@@ -1,27 +1,7 @@
-//////////////// Global Variables ////////////////
-
-// let welcomeBtn = document.querySelector(".welcome-btn")
-
-// //////////////// First screen to next screen ////////////////
-// welcomeBtn.addEventListener("click", getChooseBtnNext);
-
-// function getChooseBtnNext() {
-//     let chooseBtnNext = document.querySelector("choose-btns-next-btn");
-//     chooseBtnNext.addEventListener("click", putUserBtns);
-// }
-
 const btnNamesStr = localStorage.getItem("btnNames");
+var btnNames = btnNamesStr.split(",");
 
-// var btnNames = [...btnNamesStr];
-var btnNames = btnNamesStr.split();
-
-// localStorage.removeItem("key");
-
-// localStorage.clear();
-
-// const numberOfKeyValuePairsStored = localStorage.length;
-
-// const key = localStorage.key(0);
+console.log("button names", btnNames);
 
 function putUserBtns() {
   let userBtns = [...document.querySelectorAll(".main-scr-user-btns")];
@@ -30,12 +10,33 @@ function putUserBtns() {
   console.log(btnNames.length);
   console.log(btnNames);
   for (i = 0; i < userBtns.length; i++) {
-    for (j = 0; j < btnNames.length; j++) {
-      userBtns[i].innerHTML = btnNames[j];
-      console.log(i, j);
-    }
+    userBtns[i].innerHTML = btnNames[i];
+    console.log(i);
   }
   console.log(userBtns);
 }
 
 window.addEventListener("load", putUserBtns);
+
+let mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
+mainScrBtns.forEach((btn) => {
+  btn.addEventListener("click", findLocation);
+});
+
+function findLocation() {
+  console.log("HERE");
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      var latitude = position.coords.latitude;
+      var longitude = position.coords.longitude;
+      var marker1 = new mapboxgl.Marker()
+      .setLngLat([longitude, latitude])
+      .addTo(map);
+      console.log(latitude, longitude);
+    });
+  }
+
+  console.log("HI", map);
+  console.log(longitude);
+
+}

@@ -146,19 +146,19 @@ function removeBtnText(currBtn) {
 
 // // //////////////// Next Button Event Listener ////////////////
 
-// // var nextBtn = document.querySelector(".choose-btns-next-btn");
+var nextBtn = document.querySelector(".choose-btns-next-btn");
 
-// // nextBtn.addEventListener("click", postUserBtns);
+nextBtn.addEventListener("click", postUserBtns);
 
-// // function postUserBtns() {
-// //   btnNamesStr = btnNames.join();
+function postUserBtns() {
+  btnNamesStr = btnNames.join(",");
 
-// //   console.log(btnNamesStr);
+  console.log(btnNamesStr);
 
-// //   const localStorage = window.localStorage;
+  const localStorage = window.localStorage;
 
-// //   localStorage.setItem("btnNames", btnNamesStr);
-// // }
+  localStorage.setItem("btnNames", btnNamesStr);
+}
 
 // // // var btn = document.querySelector(".welcome-btn");
 // // // var txt = btn.textContent;
