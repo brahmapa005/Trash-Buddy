@@ -128,6 +128,7 @@
 var btnNames = []; // For getBtnTxt function
 
 function getBtnTxt(currBtn) {
+  console.log("BUTTON");
   let btnTxt = currBtn.textContent.trim();
   if (!btnNames.includes(btnTxt)) {
     btnNames.push(btnTxt);
@@ -173,4 +174,12 @@ btnOptions.forEach((button) => {
 function btnClicked(button) {
   console.log("HERE");
   button.classList.toggle("choose-btns-clicked");
+
+  if(button.classList.contains("choose-btns-clicked")) {
+    getBtnTxt(button);
+  } else {
+    removeBtnText(button);
+  }
+  
+  console.log(button.classList.contains("choose-btns-clicked"));
 }

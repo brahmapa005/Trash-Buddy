@@ -49,6 +49,8 @@ body {
 .choose-btns-h1 {
     font-family: "Bree Serif", serif;
     color: #3C91E6;
+    align-self: center;
+    margin: 21.44px 30px;
 }
 
 .choose-btns-h3 {
@@ -65,7 +67,7 @@ body {
     align-items: center;
 }
 
-.choose-btns-h2 {
+.choose-btns-h3-instructions {
     font-family: "Bree Serif", serif;
     color: #3C91E6;
     margin-top: 50px;
@@ -124,7 +126,7 @@ button:nth-child(6) {
 .choose-btns-next-btn {
     margin-top: 50px;
     width: 300px;
-    
+    height: 35px;
     border-radius: 33px;
     background-color: #13CE66;
     color: white;
@@ -171,13 +173,13 @@ button:nth-child(6) {
     height: 30px;
     background-color: #F5CB5C;
     border-radius: 8px;
+    border: none;
     font-family: "Lato", sans-serif;
     color: white;
     margin: 10px;
     text-align: center;
-    padding-top: 10px;
-    border: none;
-    padding: 10px;
+    /* padding-top: 10px; */
+    padding: 10px 4px 30px 4px;
 }
 
 #map {
@@ -185,5 +187,37 @@ button:nth-child(6) {
 }
 
 .marker {
-    background-color: red;
+    background-image: url('mapbox-icon.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media (max-width: 414px) {
+    .choose-btns-div-menu {
+        width: 45vh;
+    }
+}
+
+@media (max-width: 375px) and (min-width: 375px) {
+    .choose-btns-div-menu {
+        width: 40vh;
+    }
+
+    .mapboxgl-ctrl.mapboxgl-ctrl-group {
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 375px) and (min-width: 375px) and (max-height: 667px) and (min-height: 667px)  {
+    .choose-btns-div-menu {
+        width: 50vh;
+        height: 35vh;
+    }
+
+    .choose-btns-next-btn {
+        margin-top: 80px;
+    }
 }

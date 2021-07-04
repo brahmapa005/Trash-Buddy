@@ -30,7 +30,11 @@ function findLocation() {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
 
-      addMarker(longitude, latitude);
+      var marker1 = new mapboxgl.Marker()
+      .setLngLat([longitude, latitude])
+      .addTo(map);
+      console.log(latitude, longitude);
+
     });
   }
 
