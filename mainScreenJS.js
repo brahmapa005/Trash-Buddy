@@ -29,14 +29,28 @@ function findLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
-      var marker1 = new mapboxgl.Marker()
-      .setLngLat([longitude, latitude])
-      .addTo(map);
-      console.log(latitude, longitude);
+
+      addMarker(longitude, latitude);
     });
   }
 
-  console.log("HI", map);
-  console.log(longitude);
+}
 
+function addMarker(longitude, latitude) {
+  console.log("LONG", longitude);
+  console.log("LAT", latitude);
+  
+  var el = document.createElement('div');
+  el.className = 'marker';
+  el.style.backgroundImage = 'url(https://placekitten.com/g/';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(longitude, latitude)
+    .addTo(map);
+
+  // var marker1 = new mapboxgl.Marker()
+  // .setLngLat([longitude, latitude])
+  // .addTo(map);
+  // console.log(latitude, longitude);
 }

@@ -71,6 +71,28 @@
       </script>
     </div>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCRzEeCy-8sT0gN3MuRzbfDcvWvdV192sE",
+        authDomain: "trash-buddy-45151.firebaseapp.com",
+        projectId: "trash-buddy-45151",
+        storageBucket: "trash-buddy-45151.appspot.com",
+        messagingSenderId: "845795076789",
+        appId: "1:845795076789:web:6f0640550274dfa08d6cfc",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+      db.settings({ timestampsInSnapshots: true });
+    </script>
+
     <script src="main.js" defer></script>
     <script src="mainScreenJS.js" defer></script>
   </body>

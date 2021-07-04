@@ -68,7 +68,7 @@ body {
 .choose-btns-h2 {
     font-family: "Bree Serif", serif;
     color: #3C91E6;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .choose-btns-div-menu {
@@ -114,6 +114,11 @@ button:nth-child(6) {
 /* not working */
 .draggable .dragging {
     background-color: red;
+}
+
+.choose-btns-clicked {
+    /* background-color:#3C91E6; */
+    background-color:#3C91E6;
 }
 
 .choose-btns-next-btn {
@@ -177,4 +182,8 @@ button:nth-child(6) {
 
 #map {
     display: flex;
+}
+
+.marker {
+    background-color: red;
 }
