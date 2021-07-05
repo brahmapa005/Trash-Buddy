@@ -201,6 +201,7 @@ button:nth-child(6) {
     }
 }
 
+/* Galaxy Phone */
 @media (max-width: 375px) and (min-width: 375px) {
     .choose-btns-div-menu {
         width: 40vh;

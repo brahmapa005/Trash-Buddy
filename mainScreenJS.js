@@ -1,3 +1,5 @@
+//////////////// Getting button names from local storage ////////////////
+
 const btnNamesStr = localStorage.getItem("btnNames");
 var btnNames = btnNamesStr.split(",");
 
@@ -18,22 +20,38 @@ function putUserBtns() {
 
 window.addEventListener("load", putUserBtns);
 
+//////////////// Locating user when they click on button and adding marker ////////////////
+
 let mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
 mainScrBtns.forEach((btn) => {
-  btn.addEventListener("click", findLocation);
+  btn.addEventListener("click", function() {
+    findLocation(btn);
+  });
 });
 
-function findLocation() {
+function findLocation(button) {
   console.log("HERE");
+
+  // Tracking user
+
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      var latitude = position.coords.latitude;
+    navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
+      var latitude = position.coords.latitude;              
       var longitude = position.coords.longitude;
 
-      var marker1 = new mapboxgl.Marker()
+      // Adding a marker at user's location
+
+      var marker1 = new mapboxgl.Marker() 
       .setLngLat([longitude, latitude])
       .addTo(map);
       console.log(latitude, longitude);
+
+      // Adding data to Cloud Firestore
+      
+      db.collection("Trash").add({
+        Coordinates: [latitude, longitude],
+        Type: button.textContent
+      })
 
     });
   }
