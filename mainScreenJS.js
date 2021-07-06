@@ -23,14 +23,14 @@ function putUserBtns() {
 function getTrashData() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
-      var latitude = position.coords.latitude;              
-      var longitude = position.coords.longitude;
+      var latitudePos = position.coords.latitude;              
+      var longitudePos = position.coords.longitude;
 
       // Getting data from database
-      db.collection("Trash").where("Coordinates[0]", "<=", latitude + 0.25).where("Coordinates[0]", ">=", latitude - 0.25).get().then((snapshot) => {
+      db.collection("Trash").where("Latitude", "<=", latitudePos + 0.25).where("Latitude", ">=", latitudePos - 0.25).get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
-          var latitudeFin = doc.data().Coordinates[0];
-          var longitudeFin = doc.data().Coordinates[1];
+          var latitudeFin = doc.data().Latitude;
+          var longitudeFin = doc.data().Longitude;
 
 
           var el = document.createElement('div');
@@ -45,6 +45,7 @@ function getTrashData() {
           // var marker1 = new mapboxgl.Marker() 
           // .setLngLat([longitudeFin, latitudeFin])
           // .addTo(map);
+          console.log("MAP");
         })
       })
 
@@ -113,7 +114,8 @@ function findLocation(button, key) {
       // Adding data to Cloud Firestore
       
       db.collection("Trash").add({
-        Coordinates: [latitude, longitude],
+        Latitude: latitude,
+        Longitude: longitude,
         Type: button.textContent
       })
 

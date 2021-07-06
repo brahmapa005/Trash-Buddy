@@ -1,13 +1,13 @@
 //////////////// Getting the text of a button (used to identify chosen user buttons) ////////////////
 const btnNameTxt = {
-  "Dog Poop": "dogPoop",
-  "Paper": "paper",
+  "Dog Poop": "dogPoop", //ok
+  "Paper": "paper", //ok
   "Plastic Bags": "plasticBags",
-  "Batteries": "batteries",
-  "Furniture": "furniture",
-  "Chemical Waste": "chemicalWaste",
-  "Plastic": "plastic",
-  "Roadkill": "roadkill"
+  "Batteries": "batteries", //ok
+  "Furniture": "furniture", //ok
+  "Chemical Waste": "chemicalWaste", //ok
+  "Plastic": "plastic", //ok
+  "Roadkill": "roadkill" //ok
 }
 
 const localStorage = window.localStorage;

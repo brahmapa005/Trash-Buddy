@@ -226,6 +226,8 @@ button:nth-child(6) {
 
 .furniture {
     background-image: url("images/furniture.png");
+    width: 30px;
+    height: 30px;
 }
 
 .chemicalWaste {
