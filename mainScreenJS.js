@@ -27,14 +27,24 @@ function getTrashData() {
       var longitude = position.coords.longitude;
 
       // Getting data from database
-      db.collection("Trash").get().then((snapshot) => {
+      db.collection("Trash").where("Coordinates[0]", "<=", latitude + 0.25).where("Coordinates[0]", ">=", latitude - 0.25).get().then((snapshot) => {
         snapshot.docs.forEach(doc => {
           var latitudeFin = doc.data().Coordinates[0];
           var longitudeFin = doc.data().Coordinates[1];
 
-          var marker1 = new mapboxgl.Marker() 
-          .setLngLat([longitudeFin, latitudeFin])
-          .addTo(map);
+
+          var el = document.createElement('div');
+          el.className = 'marker';
+          // console.log("KEY NAMES", btnNames[key]);
+          el.classList.add(btnNameTxt[doc.data().Type]);
+    
+      // make a marker for each feature and add to the map
+          new mapboxgl.Marker(el)
+            .setLngLat([longitudeFin, latitudeFin])
+            .addTo(map);
+          // var marker1 = new mapboxgl.Marker() 
+          // .setLngLat([longitudeFin, latitudeFin])
+          // .addTo(map);
         })
       })
 
@@ -68,11 +78,13 @@ window.addEventListener("load", getTrashData);
 let mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
 mainScrBtns.forEach((btn) => {
   btn.addEventListener("click", function() {
-    findLocation(btn);
+    console.log("CONTENT", btn.textContent);
+    console.log(btnNameTxt);
+    findLocation(btn, btn.textContent);
   });
 });
 
-function findLocation(button) {
+function findLocation(button, key) {
   console.log("HERE");
 
   // Tracking user
@@ -83,11 +95,20 @@ function findLocation(button) {
       var longitude = position.coords.longitude;
 
       // Adding a marker at user's location
+      var el = document.createElement('div');
+      el.className = 'marker';
+      // console.log("KEY NAMES", btnNames[key]);
+      el.classList.add(btnNameTxt[key]);
 
-      var marker1 = new mapboxgl.Marker() 
-      .setLngLat([longitude, latitude])
-      .addTo(map);
-      console.log(latitude, longitude);
+  // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+        .setLngLat([longitude, latitude])
+        .addTo(map);
+
+      // var marker1 = new mapboxgl.Marker() 
+      // .setLngLat([longitude, latitude])
+      // .addTo(map);
+      // console.log(latitude, longitude);
 
       // Adding data to Cloud Firestore
       

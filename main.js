@@ -48,7 +48,8 @@ function removeBtnText(currBtn) {
    
   if (btnNames.includes(btnTxt)) {
     index = btnNames.indexOf(btnTxt);
-    btnNames.splice(index, index + 1);
+    // btnNames.splice(index, index + 1);
+    btnNames.splice(index, 1);
   }
   console.log(btnNames);
 }
