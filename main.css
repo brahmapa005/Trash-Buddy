@@ -200,45 +200,45 @@ button:nth-child(6) {
 }
 
 .dogPoop {
-  background-image: url("./images/dog-poop.png");
+  background-image: url("./Images/dog-poop.png");
 }
 
 .marker.paper {
-  background-image: url("./images/paper.png");
+  background-image: url("./Images/paper.png");
   width: 30px;
   height: 30px;
 }
 
 .plasticBags {
-  background-image: url("./images/plastic-bags.png");
+  background-image: url("./Images/plastic-bags.png");
   width: 30px;
   height: 30px;
 }
 
 .batteries {
-  background-image: url("./images/battery.png");
+  background-image: url("./Images/battery.png");
   width: 30px;
   height: 30px;
 }
 
 .furniture {
-  background-image: url("./images/furniture.png");
+  background-image: url("./Images/furniture.png");
   width: 30px;
   height: 30px;
 }
 
 .chemicalWaste {
-  background-image: url("./images/chemical-waste.png");
+  background-image: url("./Images/chemical-waste.png");
 }
 
 .plastic {
-  background-image: url("./images/plastic.png");
+  background-image: url("./Images/plastic.png");
   width: 30px;
   height: 30px;
 }
 
 .roadkill {
-  background-image: url("./images/roadkill.png");
+  background-image: url("./Images/roadkill.png");
 }
 
 @media (max-width: 414px) {
