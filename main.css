@@ -194,7 +194,7 @@ button:nth-child(6) {
 
 .marker {
     /* background-image: url("images/dog-poop.png"); */
-    background-color:transparent;
+    background-color:"red";
     background-size: cover;
     width: 50px;
     height: 50px;
@@ -203,45 +203,45 @@ button:nth-child(6) {
 }
 
 .dogPoop {
-    background-image: url("images/dog-poop.png");
+    /* background-image: url("images/dog-poop.png"); */
 }
 
 .marker.paper {
-    background-image: url("images/paper.png");
+    /* background-image: url("images/paper.png"); */
     width: 30px;
     height: 30px;
 }
 
 .plasticBags {
-    background-image: url("images/plastic-bags.png");
+    /* background-image: url("images/plastic-bags.png"); */
     width: 30px;
     height: 30px;
 }
 
 .batteries {
-    background-image: url("images/battery.png");
+    /* background-image: url("images/battery.png"); */
     width: 30px;
     height: 30px;
 }
 
 .furniture {
-    background-image: url("images/furniture.png");
+    /* background-image: url("images/furniture.png"); */
     width: 30px;
     height: 30px;
 }
 
 .chemicalWaste {
-    background-image: url("images/chemical-waste.png");
+    /* background-image: url("images/chemical-waste.png"); */
 }
 
 .plastic {
-    background-image: url("images/plastic.png");
+    /* background-image: url("images/plastic.png"); */
     width: 30px;
     height: 30px;
 }
 
 .roadkill {
-    background-image: url("images/roadkill.png");
+    /* background-image: url("images/roadkill.png"); */
 }
 
 
