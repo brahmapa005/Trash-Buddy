@@ -18,7 +18,50 @@ function putUserBtns() {
   console.log(userBtns);
 }
 
+// Collecting all trash data once screen loads
+
+function getTrashData() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
+      var latitude = position.coords.latitude;              
+      var longitude = position.coords.longitude;
+
+      // Getting data from database
+      db.collection("Trash").get().then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+          var latitudeFin = doc.data().Coordinates[0];
+          var longitudeFin = doc.data().Coordinates[1];
+
+          var marker1 = new mapboxgl.Marker() 
+          .setLngLat([longitudeFin, latitudeFin])
+          .addTo(map);
+        })
+      })
+
+      // Adding a marker at user's location
+
+      // var marker1 = new mapboxgl.Marker() 
+      // .setLngLat([longitude, latitude])
+      // .addTo(map);
+      // console.log(latitude, longitude);
+
+      // // Adding data to Cloud Firestore
+      
+      // db.collection("Trash").add({
+      //   Coordinates: [latitude, longitude],
+      //   Type: button.textContent
+      // })
+
+    });
+  }
+
+}
+
+
+// Window loading events
+
 window.addEventListener("load", putUserBtns);
+window.addEventListener("load", getTrashData);
 
 //////////////// Locating user when they click on button and adding marker ////////////////
 
@@ -58,21 +101,50 @@ function findLocation(button) {
 
 }
 
-function addMarker(longitude, latitude) {
-  console.log("LONG", longitude);
-  console.log("LAT", latitude);
+// function addMarker(longitude, latitude) {
+//   console.log("LONG", longitude);
+//   console.log("LAT", latitude);
   
-  var el = document.createElement('div');
-  el.className = 'marker';
-  el.style.backgroundImage = 'url(https://placekitten.com/g/';
+//   var el = document.createElement('div');
+//   el.className = 'marker';
+//   el.style.backgroundImage = 'url(https://placekitten.com/g/';
 
-  // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el)
-    .setLngLat(longitude, latitude)
-    .addTo(map);
+//   // make a marker for each feature and add to the map
+//   new mapboxgl.Marker(el)
+//     .setLngLat(longitude, latitude)
+//     .addTo(map);
 
-  // var marker1 = new mapboxgl.Marker()
-  // .setLngLat([longitude, latitude])
-  // .addTo(map);
-  // console.log(latitude, longitude);
+//   // var marker1 = new mapboxgl.Marker()
+//   // .setLngLat([longitude, latitude])
+//   // .addTo(map);
+//   // console.log(latitude, longitude);
+// }
+
+// Adding points to user when they click on their buttons
+
+let score = 0;
+var scoreTxt = document.querySelector(".main-scr-points-txt");
+
+console.log("SCORE", scoreTxt);
+
+mainScrBtns.forEach((btn) => {
+  btn.addEventListener("click", function() {
+    console.log("SCORE", scoreTxt);
+    addPoints(5);
+  });
+});
+
+function addPoints(pts) {
+  console.log("IN POINTS");
+  score += pts;
+  scoreTxt.innerHTML = score;
+}
+
+// Click event on settings
+let settings = document.querySelector(".main-scr-settings");
+
+settings.addEventListener("click", reselectBtns);
+
+function reselectBtns() {
+  console.log(btnNames);
 }

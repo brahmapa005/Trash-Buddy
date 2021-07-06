@@ -1,6 +1,37 @@
 //////////////// Getting the text of a button (used to identify chosen user buttons) ////////////////
+const btnNameTxt = {
+  "Dog Poop": "dogPoop",
+  "Paper": "paper",
+  "Plastic Bags": "plasticBags",
+  "Batteries": "batteries",
+  "Furniture": "furniture",
+  "Chemical Waste": "chemicalWaste",
+  "Plastic": "plastic",
+  "Roadkill": "roadkill"
+}
 
-var btnNames = []; // For getBtnTxt function
+const localStorage = window.localStorage;
+var btnNamesStorage = localStorage.getItem("btnNames");
+var btnNames;
+var btnOptions = document.querySelectorAll(".choose-btns-menu-btns");
+// var scr = 0;
+
+if(btnNamesStorage == null) {
+  btnNames = []
+} else {
+  const btnNamesMainStr = localStorage.getItem("btnNames");
+  btnNames = btnNamesMainStr.split(",");
+
+  for(i = 0; i < btnNames.length; i++) {
+    let currId = btnNameTxt[btnNames[i]]
+    let blueBtn = document.querySelector("#"+currId);
+    console.log("BLUE",blueBtn);
+    blueBtn.classList.add("choose-btns-clicked");
+  }
+  
+}
+
+// var btnNames = []; // For getBtnTxt function
 
 function getBtnTxt(currBtn) {
   console.log("BUTTON");
@@ -28,12 +59,14 @@ var nextBtn = document.querySelector(".choose-btns-next-btn");
 
 nextBtn.addEventListener("click", postUserBtns);
 
+// const localStorage = window.localStorage;
+
 function postUserBtns() {
   btnNamesStr = btnNames.join(",");
 
   console.log(btnNamesStr);
 
-  const localStorage = window.localStorage;
+  // const localStorage = window.localStorage;
 
   localStorage.setItem("btnNames", btnNamesStr);
 }
@@ -41,10 +74,11 @@ function postUserBtns() {
 
 //////////////// Clicking Buttons ////////////////
 
-let btnOptions = document.querySelectorAll(".choose-btns-menu-btns");
+// let btnOptions = document.querySelectorAll(".choose-btns-menu-btns");
 
 btnOptions.forEach((button) => {
   button.addEventListener("click", function() {
+    console.log("BLUE CLICKED");
     btnClicked(button);
   });
 })

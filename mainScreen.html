@@ -41,8 +41,8 @@
   <body>
     <div class="main-scr-flex-container">
       <div class="main-scr-nav-bar">
-        <h3 class="main-scr-points">Points: <span>0</span></h3>
-        <a><i class="fas fa-cog"></i></a>
+        <h3 class="main-scr-points">Points: <span class="main-scr-points-txt">0</span></h3>
+        <a class="main-scr-settings-container" href="chooseBtns.html"><i class="fas fa-cog main-scr-settings"></i></a>
       </div>
       <div class="main-scr-user-btns-display">
         <button class="main-scr-user-btns"></button>
@@ -51,7 +51,7 @@
         <button class="main-scr-user-btns"></button>
       </div>
 
-      <div id="map" style="width: 375px; height: 700px"></div>
+      <div id="map" style="width: 100%; height: 100vh"></div>
       <script>
         mapboxgl.accessToken =
           "pk.eyJ1IjoiYnJhaG1hcGEwMDUiLCJhIjoiY2txbG55dWNnMDRncTJucGVzcDVhd2xtNSJ9.BurUqyyxkmd8pVqhT_mCQw";
@@ -72,7 +72,7 @@
           })
         );
       </script>
-    </div>
+    </div> 
 
     <script>
       // Your web app's Firebase configuration
