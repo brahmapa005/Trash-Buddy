@@ -32,6 +32,8 @@ function getTrashData() {
           var latitudeFin = doc.data().Latitude;
           var longitudeFin = doc.data().Longitude;
 
+          console.log("DOC", snapshot.size);
+
 
           var el = document.createElement('div');
           el.className = 'marker';
@@ -45,6 +47,7 @@ function getTrashData() {
           // var marker1 = new mapboxgl.Marker() 
           // .setLngLat([longitudeFin, latitudeFin])
           // .addTo(map);
+        
           console.log("MAP");
         })
       })
@@ -69,10 +72,70 @@ function getTrashData() {
 }
 
 
+function findTrashArea() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
+      var latitudePosArea = position.coords.latitude;              
+      var longitudePosArea = position.coords.longitude;
+
+      // Getting data from database
+      db.collection("Trash").where("Latitude", "<=", latitudePosArea + 0.05).where("Latitude", ">=", latitudePosArea - 0.05).get().then((snapshot) => {
+        collectionSize = snapshot.size;
+
+        if(collectionSize >= 3) {
+          console.log("TRASH");
+        }
+
+
+      //   snapshot.docs.forEach(doc => {
+      //     var latitudeFin = doc.data().Latitude;
+      //     var longitudeFin = doc.data().Longitude;
+
+      //     console.log("DOC", snapshot.size);
+
+
+      //     var el = document.createElement('div');
+      //     el.className = 'marker';
+      //     // console.log("KEY NAMES", btnNames[key]);
+      //     el.classList.add(btnNameTxt[doc.data().Type]);
+    
+      // // make a marker for each feature and add to the map
+      //     new mapboxgl.Marker(el)
+      //       .setLngLat([longitudeFin, latitudeFin])
+      //       .addTo(map);
+      //     // var marker1 = new mapboxgl.Marker() 
+      //     // .setLngLat([longitudeFin, latitudeFin])
+      //     // .addTo(map);
+        
+      //     console.log("MAP");
+      //   })
+      })
+
+      // Adding a marker at user's location
+
+      // var marker1 = new mapboxgl.Marker() 
+      // .setLngLat([longitude, latitude])
+      // .addTo(map);
+      // console.log(latitude, longitude);
+
+      // // Adding data to Cloud Firestore
+      
+      // db.collection("Trash").add({
+      //   Coordinates: [latitude, longitude],
+      //   Type: button.textContent
+      // })
+
+    });
+  }
+
+}
+
 // Window loading events
 
 window.addEventListener("load", putUserBtns);
 window.addEventListener("load", getTrashData);
+window.addEventListener("load", setTimeout(findTrashArea, 5000));
+// setInterval(findTrashArea, 1000);
 
 //////////////// Locating user when they click on button and adding marker ////////////////
 
