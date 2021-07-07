@@ -32,8 +32,49 @@ body {
   background-color: #f5cb5c;
   border-radius: 8px;
   font-family: "Lato", sans-serif;
-  color: white;
+  color: black;
   border: none;
+}
+
+.welcome-btn:active {
+  background-color:#d2ae4f;
+  color: white;
+}
+
+.welcome-instructions {
+  margin-top: 20px;
+  color:#3c91e6;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+}
+
+.instruct-scr-instruct-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 100;
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  margin-top: 350px;
+  margin-left: 25px;
+  border-radius: 25px;
+  border: 2px solid black;
+  padding: 0px 10px;
+}
+
+.instruct-scr-instruct {
+  color:#3c91e6;
+  font-family: "Bree Serif", serif;
+}
+
+.instruct-scr-btn {
+  
+}
+
+.instruct-scr-welcome-btn {
+  display: none;
 }
 
 /* CHOOSING BUTTONS SCREEN */
@@ -100,7 +141,7 @@ body {
   background-color: #f5cb5c;
   border-radius: 10px;
   font-family: "Lato", sans-serif;
-  color: white;
+  color: black;
   margin: 10px 30px;
   border: none;
   cursor: move;
@@ -118,6 +159,7 @@ button:nth-child(6) {
 .choose-btns-clicked {
   /* background-color:#3C91E6; */
   background-color: #3c91e6;
+  color: white;
 }
 
 .choose-btns-next-btn {
@@ -129,6 +171,10 @@ button:nth-child(6) {
   color: white;
   border: none;
   font-family: "Lato", sans-serif;
+}
+
+.choose-btns-next-btn:active {
+  background-color:#0fad55;
 }
 
 /* MAIN SCREEN */
@@ -178,15 +224,41 @@ button:nth-child(6) {
   border-radius: 8px;
   border: none;
   font-family: "Lato", sans-serif;
-  color: white;
+  color: black;
   margin: 10px;
   text-align: center;
   /* padding-top: 10px; */
   padding: 10px 4px 30px 4px;
 }
 
+.main-scr-user-btns:active {
+  background-color:#d2ae4f;
+  color: white;
+}
+
 #map {
   display: flex;
+}
+
+.main-scr-call-alert {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 100;
+  position: absolute;
+  width: 300px;
+  height: 250px;
+  margin-top: 350px;
+  margin-left: 25px;
+  border-radius: 25px;
+  border: 2px solid black;
+}
+
+.main-scr-call-alert-btn {
+  /* background-color: #f5cb5c; */
+  /* display: inline-block; */
+  width: 100px;
+  height: 100px;
 }
 
 .marker {

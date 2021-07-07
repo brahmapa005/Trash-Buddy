@@ -13,9 +13,6 @@
       rel="stylesheet"
     />
 
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,25 +27,29 @@
     />
 
     <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-      crossorigin="anonymous"
-    />
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+    integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+    crossorigin="anonymous"
+  />
 
     <title>Trash Buddy</title>
   </head>
   <body>
     <div class="main-scr-flex-container">
       <div class="main-scr-nav-bar">
-        <h3 class="main-scr-points">Points: <span class="main-scr-points-txt">0</span></h3>
-        <a class="main-scr-settings-container" href="chooseBtns.html"><i class="fas fa-cog main-scr-settings"></i></a>
+        <h3 class="main-scr-points">
+          Points: <span class="main-scr-points-txt">0</span>
+        </h3>
+        <a class="main-scr-settings-container" href="chooseBtns.html"
+          ><i class="fas fa-cog main-scr-settings"></i
+        ></a>
       </div>
       <div class="main-scr-user-btns-display">
-        <button class="main-scr-user-btns"></button>
-        <button class="main-scr-user-btns"></button>
-        <button class="main-scr-user-btns"></button>
-        <button class="main-scr-user-btns"></button>
+        <button class="main-scr-user-btns">Furniture</button>
+        <button class="main-scr-user-btns">Paper</button>
+        <button class="main-scr-user-btns">Batteries</button>
+        <button class="main-scr-user-btns" id="instruct-scr-demo-btn">Plastic</button>
       </div>
 
       <div id="map" style="width: 100%; height: 100vh"></div>
@@ -73,36 +74,18 @@
         );
       </script>
 
-      <div class="main-scr-call-alert">
-        <h3>Looks like there's quite a bit of junk around you!</h3>
+      <div class="instruct-scr-instruct-div">
+        <h3 class="instruct-scr-instruct">First step is to choose your buttons! These have been chosen for you, but when you get started, you can pick!</h3>
         <ul>
-          <li class="main-scr-call-alert-btn"></li>
-          <li class="main-scr-call-alert-btn"></li>
-          <li class="main-scr-call-alert-btn"></li>
+          <li class="instruct-scr-btn" id="instruct-scr-btn-one"></li>
+          <li class="instruct-scr-btn" id="instruct-scr-btn-two"></li>
+          <li class="instruct-scr-btn" id="instruct-scr-btn-three"></li>
+          <li class="instruct-scr-btn" id="instruct-scr-btn-four"></li>
+          <li class="instruct-scr-btn" id="instruct-scr-btn-five"></li>
         </ul>
-        <!-- <button class="main-scr-call-alert-btn">HI</button>
-        <button>HI</button>
-        <button>HI</button> -->
+        <a href="chooseBtns.html"><button class="instruct-scr-welcome-btn">Get Started!</button></a>
       </div>
-    </div> 
-
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyCRzEeCy-8sT0gN3MuRzbfDcvWvdV192sE",
-        authDomain: "trash-buddy-45151.firebaseapp.com",
-        projectId: "trash-buddy-45151",
-        storageBucket: "trash-buddy-45151.appspot.com",
-        messagingSenderId: "845795076789",
-        appId: "1:845795076789:web:6f0640550274dfa08d6cfc",
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.firestore();
-      db.settings({ timestampsInSnapshots: true });
-    </script>
-
-    <script src="main.js" defer></script>
-    <script src="mainScreenJS.js" defer></script>
+    </div>
+    <script src="instructions.js" defer></script>
   </body>
 </html>

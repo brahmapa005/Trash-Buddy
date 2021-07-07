@@ -52,6 +52,39 @@ function getTrashData() {
         })
       })
 
+      db.collection("Trash").where("Latitude", "<=", latitudePos + 0.05).where("Latitude", ">=", latitudePos - 0.05).get().then((snapshot) => {
+        let collectionSize = snapshot.size;
+        console.log("SNAPSHOT", snapshot.size);
+
+        if(collectionSize >= 3) {
+          console.log("TRASH", collectionSize);
+        }
+
+
+      //   snapshot.docs.forEach(doc => {
+      //     var latitudeFin = doc.data().Latitude;
+      //     var longitudeFin = doc.data().Longitude;
+
+      //     console.log("DOC", snapshot.size);
+
+
+      //     var el = document.createElement('div');
+      //     el.className = 'marker';
+      //     // console.log("KEY NAMES", btnNames[key]);
+      //     el.classList.add(btnNameTxt[doc.data().Type]);
+    
+      // // make a marker for each feature and add to the map
+      //     new mapboxgl.Marker(el)
+      //       .setLngLat([longitudeFin, latitudeFin])
+      //       .addTo(map);
+      //     // var marker1 = new mapboxgl.Marker() 
+      //     // .setLngLat([longitudeFin, latitudeFin])
+      //     // .addTo(map);
+        
+      //     console.log("MAP");
+      //   })
+      })
+
       // Adding a marker at user's location
 
       // var marker1 = new mapboxgl.Marker() 
@@ -133,8 +166,8 @@ function findTrashArea() {
 // Window loading events
 
 window.addEventListener("load", putUserBtns);
-window.addEventListener("load", getTrashData);
-window.addEventListener("load", setTimeout(findTrashArea, 5000));
+window.addEventListener("load", setInterval(getTrashData, 5000));
+// window.addEventListener("load", setTimeout(findTrashArea, 5000));
 // setInterval(findTrashArea, 1000);
 
 //////////////// Locating user when they click on button and adding marker ////////////////
