@@ -2,11 +2,11 @@
 
 const btnNamesStr = localStorage.getItem("btnNames");
 var btnNames = btnNamesStr.split(",");
-
+var mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
 console.log("button names", btnNames);
 
 function putUserBtns() {
-  let userBtns = [...document.querySelectorAll(".main-scr-user-btns")];
+  let userBtns = [...mainScrBtns];
 
   console.log(userBtns.length);
   console.log(btnNames.length);
@@ -22,162 +22,173 @@ function putUserBtns() {
 
 function getTrashData() {
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
-      var latitudePos = position.coords.latitude;              
+    navigator.geolocation.getCurrentPosition((position) => {
+      //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
+      var latitudePos = position.coords.latitude;
       var longitudePos = position.coords.longitude;
 
       // Getting data from database
-      db.collection("Trash").where("Latitude", "<=", latitudePos + 0.25).where("Latitude", ">=", latitudePos - 0.25).get().then((snapshot) => {
-        snapshot.docs.forEach(doc => {
-          var latitudeFin = doc.data().Latitude;
-          var longitudeFin = doc.data().Longitude;
+      db.collection("Trash")
+        .where("Latitude", "<=", latitudePos + 0.25)
+        .where("Latitude", ">=", latitudePos - 0.25)
+        .get()
+        .then((snapshot) => {
+          snapshot.docs.forEach((doc) => {
+            var latitudeFin = doc.data().Latitude;
+            var longitudeFin = doc.data().Longitude;
 
-          console.log("DOC", snapshot.size);
+            console.log("DOC", snapshot.size);
 
+            var el = document.createElement("div");
+            el.className = "marker";
+            // console.log("KEY NAMES", btnNames[key]);
+            el.classList.add(btnNameTxt[doc.data().Type]);
 
-          var el = document.createElement('div');
-          el.className = 'marker';
-          // console.log("KEY NAMES", btnNames[key]);
-          el.classList.add(btnNameTxt[doc.data().Type]);
-    
-      // make a marker for each feature and add to the map
-          new mapboxgl.Marker(el)
-            .setLngLat([longitudeFin, latitudeFin])
-            .addTo(map);
-          // var marker1 = new mapboxgl.Marker() 
-          // .setLngLat([longitudeFin, latitudeFin])
-          // .addTo(map);
-        
-          console.log("MAP");
-        })
-      })
+            // make a marker for each feature and add to the map
+            new mapboxgl.Marker(el)
+              .setLngLat([longitudeFin, latitudeFin])
+              .addTo(map);
+            // var marker1 = new mapboxgl.Marker()
+            // .setLngLat([longitudeFin, latitudeFin])
+            // .addTo(map);
 
-      db.collection("Trash").where("Latitude", "<=", latitudePos + 0.05).where("Latitude", ">=", latitudePos - 0.05).get().then((snapshot) => {
-        let collectionSize = snapshot.size;
-        console.log("SNAPSHOT", snapshot.size);
+            console.log("MAP");
+          });
+        });
 
-        if(collectionSize >= 3) {
-          console.log("TRASH", collectionSize);
-        }
+      db.collection("Trash")
+        .where("Latitude", "<=", latitudePos + 0.05)
+        .where("Latitude", ">=", latitudePos - 0.05)
+        .get()
+        .then((snapshot) => {
+          let collectionSize = snapshot.size;
+          console.log("SNAPSHOT", snapshot.size);
 
+          if (collectionSize >= 3) {
+            console.log("TRASH", collectionSize);
+          }
 
-      //   snapshot.docs.forEach(doc => {
-      //     var latitudeFin = doc.data().Latitude;
-      //     var longitudeFin = doc.data().Longitude;
+          //   snapshot.docs.forEach(doc => {
+          //     var latitudeFin = doc.data().Latitude;
+          //     var longitudeFin = doc.data().Longitude;
 
-      //     console.log("DOC", snapshot.size);
+          //     console.log("DOC", snapshot.size);
 
+          //     var el = document.createElement('div');
+          //     el.className = 'marker';
+          //     // console.log("KEY NAMES", btnNames[key]);
+          //     el.classList.add(btnNameTxt[doc.data().Type]);
 
-      //     var el = document.createElement('div');
-      //     el.className = 'marker';
-      //     // console.log("KEY NAMES", btnNames[key]);
-      //     el.classList.add(btnNameTxt[doc.data().Type]);
-    
-      // // make a marker for each feature and add to the map
-      //     new mapboxgl.Marker(el)
-      //       .setLngLat([longitudeFin, latitudeFin])
-      //       .addTo(map);
-      //     // var marker1 = new mapboxgl.Marker() 
-      //     // .setLngLat([longitudeFin, latitudeFin])
-      //     // .addTo(map);
-        
-      //     console.log("MAP");
-      //   })
-      })
+          // // make a marker for each feature and add to the map
+          //     new mapboxgl.Marker(el)
+          //       .setLngLat([longitudeFin, latitudeFin])
+          //       .addTo(map);
+          //     // var marker1 = new mapboxgl.Marker()
+          //     // .setLngLat([longitudeFin, latitudeFin])
+          //     // .addTo(map);
+
+          //     console.log("MAP");
+          //   })
+        });
 
       // Adding a marker at user's location
 
-      // var marker1 = new mapboxgl.Marker() 
+      // var marker1 = new mapboxgl.Marker()
       // .setLngLat([longitude, latitude])
       // .addTo(map);
       // console.log(latitude, longitude);
 
       // // Adding data to Cloud Firestore
-      
+
       // db.collection("Trash").add({
       //   Coordinates: [latitude, longitude],
       //   Type: button.textContent
       // })
-
     });
   }
-
 }
-
 
 function findTrashArea() {
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
-      var latitudePosArea = position.coords.latitude;              
+    navigator.geolocation.getCurrentPosition((position) => {
+      //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
+      var latitudePosArea = position.coords.latitude;
       var longitudePosArea = position.coords.longitude;
 
       // Getting data from database
-      db.collection("Trash").where("Latitude", "<=", latitudePosArea + 0.05).where("Latitude", ">=", latitudePosArea - 0.05).get().then((snapshot) => {
-        collectionSize = snapshot.size;
+      db.collection("Trash")
+        .where("Latitude", "<=", latitudePosArea + 0.05)
+        .where("Latitude", ">=", latitudePosArea - 0.05)
+        .get()
+        .then((snapshot) => {
+          collectionSize = snapshot.size;
 
-        if(collectionSize >= 3) {
-          console.log("TRASH");
-        }
+          if (collectionSize >= 3) {
+            console.log("TRASH");
+          }
 
+          //   snapshot.docs.forEach(doc => {
+          //     var latitudeFin = doc.data().Latitude;
+          //     var longitudeFin = doc.data().Longitude;
 
-      //   snapshot.docs.forEach(doc => {
-      //     var latitudeFin = doc.data().Latitude;
-      //     var longitudeFin = doc.data().Longitude;
+          //     console.log("DOC", snapshot.size);
 
-      //     console.log("DOC", snapshot.size);
+          //     var el = document.createElement('div');
+          //     el.className = 'marker';
+          //     // console.log("KEY NAMES", btnNames[key]);
+          //     el.classList.add(btnNameTxt[doc.data().Type]);
 
+          // // make a marker for each feature and add to the map
+          //     new mapboxgl.Marker(el)
+          //       .setLngLat([longitudeFin, latitudeFin])
+          //       .addTo(map);
+          //     // var marker1 = new mapboxgl.Marker()
+          //     // .setLngLat([longitudeFin, latitudeFin])
+          //     // .addTo(map);
 
-      //     var el = document.createElement('div');
-      //     el.className = 'marker';
-      //     // console.log("KEY NAMES", btnNames[key]);
-      //     el.classList.add(btnNameTxt[doc.data().Type]);
-    
-      // // make a marker for each feature and add to the map
-      //     new mapboxgl.Marker(el)
-      //       .setLngLat([longitudeFin, latitudeFin])
-      //       .addTo(map);
-      //     // var marker1 = new mapboxgl.Marker() 
-      //     // .setLngLat([longitudeFin, latitudeFin])
-      //     // .addTo(map);
-        
-      //     console.log("MAP");
-      //   })
-      })
+          //     console.log("MAP");
+          //   })
+        });
 
       // Adding a marker at user's location
 
-      // var marker1 = new mapboxgl.Marker() 
+      // var marker1 = new mapboxgl.Marker()
       // .setLngLat([longitude, latitude])
       // .addTo(map);
       // console.log(latitude, longitude);
 
       // // Adding data to Cloud Firestore
-      
+
       // db.collection("Trash").add({
       //   Coordinates: [latitude, longitude],
       //   Type: button.textContent
       // })
-
     });
   }
-
 }
 
 // Window loading events
 
-window.addEventListener("load", putUserBtns);
-window.addEventListener("load", setInterval(getTrashData, 5000));
+//window.addEventListener("load", putUserBtns);
+window.addEventListener("load", featuresOnLoad);
+// window.addEventListener("load", getTrashData);
+//window.addEventListener("load", setInterval(getTrashData, 5000));
 // window.addEventListener("load", setTimeout(findTrashArea, 5000));
 // setInterval(findTrashArea, 1000);
+function featuresOnLoad() {
+  putUserBtns();
+  setInterval(getTrashData, 5000);
+}
 
 //////////////// Locating user when they click on button and adding marker ////////////////
 
-let mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
+//var mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
 mainScrBtns.forEach((btn) => {
-  btn.addEventListener("click", function() {
+  btn.addEventListener("click", function () {
     console.log("CONTENT", btn.textContent);
     console.log(btnNameTxt);
     findLocation(btn, btn.textContent);
+    addPoints(5);
   });
 });
 
@@ -187,43 +198,40 @@ function findLocation(button, key) {
   // Tracking user
 
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition((position) => { //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
-      var latitude = position.coords.latitude;              
+    navigator.geolocation.getCurrentPosition((position) => {
+      //This code is from Stack Overflow  https://stackoverflow.com/questions/54405968/how-to-get-the-current-location-of-the-user
+      var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
 
       // Adding a marker at user's location
-      var el = document.createElement('div');
-      el.className = 'marker';
+      var el = document.createElement("div");
+      el.className = "marker";
       // console.log("KEY NAMES", btnNames[key]);
       el.classList.add(btnNameTxt[key]);
 
-  // make a marker for each feature and add to the map
-      new mapboxgl.Marker(el)
-        .setLngLat([longitude, latitude])
-        .addTo(map);
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el).setLngLat([longitude, latitude]).addTo(map);
 
-      // var marker1 = new mapboxgl.Marker() 
+      // var marker1 = new mapboxgl.Marker()
       // .setLngLat([longitude, latitude])
       // .addTo(map);
       // console.log(latitude, longitude);
 
       // Adding data to Cloud Firestore
-      
+
       db.collection("Trash").add({
         Latitude: latitude,
         Longitude: longitude,
-        Type: button.textContent
-      })
-
+        Type: button.textContent,
+      });
     });
   }
-
 }
 
 // function addMarker(longitude, latitude) {
 //   console.log("LONG", longitude);
 //   console.log("LAT", latitude);
-  
+
 //   var el = document.createElement('div');
 //   el.className = 'marker';
 //   el.style.backgroundImage = 'url(https://placekitten.com/g/';
@@ -241,17 +249,17 @@ function findLocation(button, key) {
 
 // Adding points to user when they click on their buttons
 
-let score = 0;
+var score = 0;
 var scoreTxt = document.querySelector(".main-scr-points-txt");
 
 console.log("SCORE", scoreTxt);
 
-mainScrBtns.forEach((btn) => {
-  btn.addEventListener("click", function() {
-    console.log("SCORE", scoreTxt);
-    addPoints(5);
-  });
-});
+// mainScrBtns.forEach((btn) => {
+//   btn.addEventListener("click", function() {
+//     console.log("SCORE", scoreTxt);
+//     addPoints(5);
+//   });
+// });
 
 function addPoints(pts) {
   console.log("IN POINTS");
@@ -266,4 +274,39 @@ settings.addEventListener("click", reselectBtns);
 
 function reselectBtns() {
   console.log(btnNames);
+}
+
+// Event listeners for call buttons
+let btnTwoMain = document.querySelector("#main-scr-btn-two");
+
+let callInstructions = document.querySelector(".main-scr-call-instruct");
+
+let callBtn = document.querySelector("#main-scr-call-btn");
+let noCallBtn = document.querySelector("#main-scr-no-call-btn");
+
+btnTwoMain.addEventListener("click", btnTwoMainFunc);
+btnThreeMain.addEventListener("click", btnThreeMainFunc);
+
+callBtn.addEventListener("click", callBtnFunc);
+noCallBtn.addEventListener("click", noCallBtnFunc);
+
+function btnTwoMainFunc() {
+  console.log("CLICKED");
+  //Change second button to blue
+  //Change first button to yellow
+  //Change instructions text
+  //Change position of div
+  //Display call button options
+}
+
+function callBtnFunc() {
+  //Change third button to blue
+  //Change second button to yellow
+  //Change instructions text
+  //Change position of div
+  //Remove div
+}
+
+function noCallBtnFunc() {
+  //Remove div
 }
