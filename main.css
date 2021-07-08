@@ -88,7 +88,7 @@ body {
 }
 
 .instructMarker {
-    background-image: url("images/plastic.png"); 
+    background-image: url("Images/plastic.png"); 
     background-color: transparent;
     background-size: cover;
     width: 50px;
