@@ -25,18 +25,12 @@ function firstInstruction() {
 }
 
 function btnTwoFunc() {
-    console.log("CLICKED BTN TWO INSTRUCTIONS");
     btnOne.classList.toggle("instruct-scr-call-alert-curr-btn");
     btnTwo.classList.toggle("instruct-scr-call-alert-curr-btn");
 
     instructions.innerHTML = "See plastic? Just click the corresponding button. Give it a try!";
 
     instructionsDiv.style.marginTop = "200px";
-    //Change second button to blue
-    //Change first button to yellow
-    //Change instructions text
-    //Change position of div
-
 }
 
 function demoBtnFunc() {
@@ -53,27 +47,14 @@ function demoBtnFunc() {
       
             var instructMarker = document.createElement("div");
             instructMarker.className = "instructMarker";
-            // console.log("KEY NAMES", btnNames[key]);
       
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(instructMarker)
                 .setLngLat([longitudeInstructPos, latitudeInstructPos])
                 .addTo(map);
-                  // var marker1 = new mapboxgl.Marker()
-                  // .setLngLat([longitudeFin, latitudeFin])
-                  // .addTo(map);
-      
-            console.log("MAP");
-
       
         });
     }
-    //Change third button to blue
-    //Change second button to yellow
-    //Change instructions text
-    //Change position of div
-    //Add plastic marker
-
 }
 
 function btnFourFunc() {
@@ -83,11 +64,6 @@ function btnFourFunc() {
     instructions.innerHTML = "When you enter an area with a lot of trash, you'll be prompted to call the junk line. If you do, you get points for future rewards!";
 
     instructionsDiv.style.height = "200px";
-    //Change fourth button to blue
-    //Change third button to yellow
-    //Change instructions text
-    //Change position of div
-
 }
 
 function btnFiveFunc() {
@@ -99,10 +75,4 @@ function btnFiveFunc() {
     instructionsDiv.style.height = "150px";
 
     instructWelcomeBtn.style.display = "flex";
-    //Change fifth button to blue
-    //Change fourth button to yellow
-    //Change instructions text
-    //Change position of div
-    //Add get started button
-
 }
