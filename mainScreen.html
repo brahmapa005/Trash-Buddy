@@ -75,18 +75,20 @@
 
       <div class="main-scr-call-alert">
         <h3 class="main-scr-call-instruct">Looks like there's quite a bit of junk around you!</h3>
-        <ul>
-          <li class="main-scr-call-alert-btn" id="main-scr-btn-one"></li>
-          <li class="main-scr-call-alert-btn" id="main-scr-btn-two"></li>
-          <li class="main-scr-call-alert-btn" id="main-scr-btn-three"></li>
-        </ul>
-        <button id="main-scr-call-btn">Call</button>
-        <button id="main-scr-no-call-btn">Don't Call</button>
-        <!-- <button class="main-scr-call-alert-btn">HI</button>
-        <button>HI</button>
-        <button>HI</button> -->
+        <div class="main-scr-btn-container">
+          <div class="main-scr-call-alert-btn main-scr-call-alert-btn-one main-scr-call-alert-curr-btn"></div>
+          <div class="main-scr-call-alert-btn main-scr-call-alert-btn-two"></div>
+          <div class="main-scr-call-alert-btn main-scr-call-alert-btn-three"></div>
+        </div>
       </div>
+      <button class="main-scr-call-btns" id="main-scr-call-btn">Call</button>
+      <button class="main-scr-call-btns" id="main-scr-no-call-btn">Don't Call</button>
     </div> 
+    <div class="main-scr-call-btn-container">
+      <!-- <a href="tel:18773110503"><button class="main-scr-call-btns" id="main-scr-call-btn">Call</button></a> -->
+      <button class="main-scr-call-btns" id="main-scr-call-btn">Call</button>
+      <button class="main-scr-call-btns" id="main-scr-no-call-btn">Don't Call</button>
+    </div>
 
     <script>
       // Your web app's Firebase configuration

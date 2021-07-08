@@ -50,18 +50,20 @@ body {
 }
 
 .instruct-scr-instruct-div {
-  display: flex;
+  /* display: flex; */
+  display: none;
   flex-direction: column;
   justify-content: center;
   z-index: 100;
   position: absolute;
   width: 300px;
-  height: 250px;
+  height: 150px;
   margin-top: 350px;
   margin-left: 25px;
   border-radius: 25px;
-  border: 2px solid black;
+  border: 2px solid #13ce66;
   padding: 0px 10px;
+  background-color: white;
 }
 
 .instruct-scr-instruct {
@@ -69,12 +71,44 @@ body {
   font-family: "Bree Serif", serif;
 }
 
-.instruct-scr-btn {
-  
+.instruct-scr-call-alert-btn {
+  background-color: #f5cb5c;
+  margin: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.instruct-scr-call-alert-curr-btn {
+  background-color:#3c91e6;
+}
+
+.instructMarker {
+    background-image: url("images/plastic.png"); 
+    background-color: transparent;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    /* border-radius: 50%; */
+    cursor: pointer;
+}
+
+.instruct-scr-get-started-btn {
+  display: none;
+  position: absolute;
+  margin-top: 400px;
+  margin-left: 80px;
 }
 
 .instruct-scr-welcome-btn {
-  display: none;
+  width: 200px;
+  height: 40px;
+  background-color: #00d991;
+  border-radius: 8px;
+  font-family: "Lato", sans-serif;
+  color: black;
+  border: 5px solid #13ce66;
 }
 
 /* CHOOSING BUTTONS SCREEN */
@@ -241,24 +275,70 @@ button:nth-child(6) {
 }
 
 .main-scr-call-alert {
-  display: flex;
+  /* display: flex; */
+  display: none;
   flex-direction: column;
   justify-content: center;
-  z-index: 100;
+  /* z-index: 100; */
   position: absolute;
   width: 300px;
-  height: 250px;
+  height: 150px;
   margin-top: 350px;
   margin-left: 25px;
   border-radius: 25px;
-  border: 2px solid black;
+  border: 2px solid #13ce66;
+  background-color: white;
+  padding: 10px;
+}
+
+.main-scr-call-instruct {
+  font-family: "Bree Serif", serif;
+  color: #3c91e6;
+}
+
+.main-scr-btn-container {
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
 }
 
 .main-scr-call-alert-btn {
-  /* background-color: #f5cb5c; */
-  /* display: inline-block; */
+  background-color: #f5cb5c;
+  margin: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.main-scr-call-alert-curr-btn {
+  background-color:#3c91e6;
+}
+
+.main-scr-call-btns {
+  /* display: none; */
+  border: none;
+  border-radius: 8px;
   width: 100px;
-  height: 100px;
+  height: 40px;
+}
+
+#main-scr-call-btn {
+  background-color: #00d991;
+}
+
+#main-scr-no-call-btn {
+  background-color: #FE5E41;
+  margin-left: 10px;
+}
+
+.main-scr-call-btn-container {
+  /* display: flex; */
+  display: none;
+  position: absolute;
+  margin: 150px 0px 0px 40px;
+  top: 400px;
+  bottom: 0px;
 }
 
 .marker {
