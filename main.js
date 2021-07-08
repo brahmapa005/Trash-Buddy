@@ -37,6 +37,7 @@ function getBtnTxt(currBtn) {
   if (!btnNames.includes(btnTxt)) {
     btnNames.push(btnTxt);
   }
+  
 }
 
 function removeBtnText(currBtn) {
@@ -75,8 +76,9 @@ function btnClicked(button) {
   button.classList.toggle("choose-btns-clicked");
 
   if(button.classList.contains("choose-btns-clicked")) {
-    getBtnTxt(button);
+      getBtnTxt(button);
   } else {
-    removeBtnText(button);
+      removeBtnText(button);
   }
 }
+
