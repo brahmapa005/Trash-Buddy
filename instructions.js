@@ -45,12 +45,17 @@ function demoBtnFunc() {
             var latitudeInstructPos = position.coords.latitude;
             var longitudeInstructPos = position.coords.longitude;
       
+            var popupInstruct = new mapboxgl.Popup({ offset: 25 }).setText(
+                "Plastic"
+            );
+
             var instructMarker = document.createElement("div");
             instructMarker.className = "instructMarker";
       
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(instructMarker)
                 .setLngLat([longitudeInstructPos, latitudeInstructPos])
+                .setPopup(popupInstruct) // sets a popup on this marker
                 .addTo(map);
       
         });

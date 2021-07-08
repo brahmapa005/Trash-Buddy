@@ -49,6 +49,10 @@ body {
   font-weight: bold;
 }
 
+.welcome-instructions:active {
+  color: #3278bf;
+}
+
 .instruct-scr-instruct-div {
   display: none;
   flex-direction: column;
@@ -269,7 +273,7 @@ button:nth-child(6) {
   justify-content: center;
   position: absolute;
   width: 300px;
-  height: 150px;
+  /* height: 150px; */
   margin-top: 350px;
   margin-left: 25px;
   border-radius: 25px;
@@ -302,8 +306,13 @@ button:nth-child(6) {
   background-color:#3c91e6;
 }
 
+.main-scr-call-btn-anchor {
+  text-decoration: none;
+}
+
 .main-scr-call-btns {
   border: none;
+  /* display: none; */
   border-radius: 8px;
   width: 100px;
   height: 40px;
@@ -311,11 +320,13 @@ button:nth-child(6) {
 
 #main-scr-call-btn {
   background-color: #00d991;
+  display: none;
 }
 
 #main-scr-no-call-btn {
   background-color: #FE5E41;
   margin-left: 10px;
+  display: none;
 }
 
 .main-scr-call-btn-container {
@@ -332,6 +343,16 @@ button:nth-child(6) {
   width: 50px;
   height: 50px;
   cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  color: #3c91e6;
 }
 
 .dogPoop {

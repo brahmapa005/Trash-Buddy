@@ -3,6 +3,7 @@
 const btnNamesStr = localStorage.getItem("btnNames");
 var btnNames = btnNamesStr.split(",");
 var mainScrBtns = document.querySelectorAll(".main-scr-user-btns");
+var btnNamesElement;
 console.log("button names", btnNames);
 
 function putUserBtns() {
@@ -10,7 +11,13 @@ function putUserBtns() {
 
   console.log(btnNames);
   for (i = 0; i < userBtns.length; i++) {
-    userBtns[i].innerHTML = btnNames[i];
+    btnNamesElement = btnNames[i];
+
+    if(btnNamesElement === undefined) {
+      userBtns[i].innerHTML = "";
+    } else {
+      userBtns[i].innerHTML = btnNames[i];
+    }
   }
   console.log(userBtns);
 }
@@ -34,6 +41,10 @@ function getTrashData() {
             var latitudeFin = doc.data().Latitude;
             var longitudeFin = doc.data().Longitude;
 
+            var popupCollect = new mapboxgl.Popup({ offset: 25 }).setText(
+              doc.data().Type
+              );
+
             var el = document.createElement("div");
             el.className = "marker";
             el.classList.add(btnNameTxt[doc.data().Type]);
@@ -41,6 +52,7 @@ function getTrashData() {
             // make a marker for each feature and add to the map
             new mapboxgl.Marker(el)
               .setLngLat([longitudeFin, latitudeFin])
+              .setPopup(popupCollect) // sets a popup on this marker
               .addTo(map);
 
           });
@@ -69,7 +81,8 @@ window.addEventListener("load", featuresOnLoad);
 
 function featuresOnLoad() {
   putUserBtns();
-  setInterval(getTrashData, 5000);
+  // setInterval(getTrashData, 5000);
+  getTrashData();
 }
 
 //////////////// Locating user when they click on button and adding marker ////////////////
@@ -91,13 +104,19 @@ function findLocation(button, key) {
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
 
+      // create the popup
+      var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+          key
+          // "HI"
+      );
+
       // Adding a marker at user's location
       var el = document.createElement("div");
       el.className = "marker";
       el.classList.add(btnNameTxt[key]);
 
       // make a marker for each feature and add to the map
-      new mapboxgl.Marker(el).setLngLat([longitude, latitude]).addTo(map);
+      new mapboxgl.Marker(el).setLngLat([longitude, latitude]).setPopup(popup).addTo(map);
 
       // Adding data to Cloud Firestore
 
@@ -131,33 +150,42 @@ let btnThreeMain = document.querySelector(".main-scr-call-alert-btn-three");
 
 let callInstructions = document.querySelector(".main-scr-call-instruct");
 
-let callBtnContainer = document.querySelector(".main-scr-call-btn-container")
+let callBtnContainer = document.querySelector(".main-scr-call-btn-container");
+let callAlertContainer = document.querySelector(".main-scr-call-alert");
 
 let callBtn = document.querySelector("#main-scr-call-btn");
+console.log('btn',callBtn)
 let noCallBtn = document.querySelector("#main-scr-no-call-btn");
 
 btnTwoMain.addEventListener("click", btnTwoMainFunc);
-btnThreeMain.addEventListener("click", btnThreeMainFunc);
-
-callBtn.addEventListener("click", callBtnFunc);
-noCallBtn.addEventListener("click", noCallBtnFunc);
 
 function btnTwoMainFunc() {
+  
   btnOneMain.classList.toggle("main-scr-call-alert-curr-btn");
   btnTwoMain.classList.toggle("main-scr-call-alert-curr-btn");
 
   callInstructions.innerHTML = "Here's your nearest junk-line number: 1-877-311-0503";
 
   callBtnContainer.style.display = "flex";
+
+  callBtn.style.display = "inline";
+  noCallBtn.style.display = "inline";
+
+  callBtn.addEventListener("click", callBtnFunc);
+  noCallBtn.addEventListener("click", noCallBtnFunc);
 }
 
 function callBtnFunc() {
+  console.log('iamgettingclicked')
   btnTwoMain.classList.toggle("main-scr-call-alert-curr-btn");
   btnThreeMain.classList.toggle("main-scr-call-alert-curr-btn");
 
   callInstructions.innerHTML = "Thanks for calling! You just helped in protecting the environment and for that, you get 25 points!";
+
+  addPoints(25);
 }
 
 function noCallBtnFunc() {
+  callAlertContainer.style.display = "none";
   callBtnContainer.style.display = "none";
 }

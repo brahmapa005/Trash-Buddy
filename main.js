@@ -22,7 +22,9 @@ if(btnNamesStorage == null) {
   btnNames = btnNamesMainStr.split(",");
 
   for(i = 0; i < btnNames.length; i++) {
-    let currId = btnNameTxt[btnNames[i]]
+    let currId = btnNameTxt[btnNames[i]];
+    console.log(btnNames[i]);
+    console.log("CURRENT ID", currId);
     let blueBtn = document.querySelector("#"+currId);
 
     blueBtn.classList.add("choose-btns-clicked");
