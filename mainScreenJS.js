@@ -81,7 +81,7 @@ window.addEventListener("load", featuresOnLoad);
 
 function featuresOnLoad() {
   putUserBtns();
-  // setInterval(getTrashData, 5000);
+  // setInterval(getTrashData, 5000); //In reality, this function would be running every few seconds but this involves a lot of pull requests from my Cloud Firestore database. This many requests costs money so for my project, which is an MVP, I am only running this function once.
   getTrashData();
 }
 
