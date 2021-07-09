@@ -183,6 +183,12 @@ function callBtnFunc() {
   callInstructions.innerHTML = "Thanks for calling! You just helped in protecting the environment and for that, you get 25 points!";
 
   addPoints(25);
+
+  setTimeout(function() {
+    callAlertContainer.style.display = "none";
+    callBtnContainer.style.display = "none";
+
+  }, 2000);
 }
 
 function noCallBtnFunc() {
